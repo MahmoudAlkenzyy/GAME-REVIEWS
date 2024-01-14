@@ -13,9 +13,9 @@ export class Details {
         closeBtn.addEventListener('click', () => {
             spinner.style.display = 'flex';
 
-            Home.classList.remove('d-none');
-            details.classList.add('d-none');
             setTimeout(() => {
+                Home.classList.remove('d-none');
+                details.classList.add('d-none');
                 spinner.style.display = 'none';
             }, 1500);
         });
