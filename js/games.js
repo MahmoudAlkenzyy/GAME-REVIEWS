@@ -1,7 +1,9 @@
 import { Ui } from './uiDisplay.js';
-const ui = new Ui();
+import { Details } from './details.js';
+
 export class Games {
     constructor() {
+        const ui = new Ui();
         this.getGames('mmorpg');
         this.ui = new Ui();
         const links = document.querySelectorAll('.nav-item a');
@@ -9,6 +11,8 @@ export class Games {
         for (const link of links) {
             link.addEventListener('click', (e) => {
                 e.preventDefault();
+                scrollTo(0, 600);
+
                 console.log(e.target.text.toLowerCase().trim() === 'shooter');
                 const activeNow = document.querySelector('a.active');
                 activeNow.classList.remove('active');
@@ -18,6 +22,7 @@ export class Games {
                 // window.scrollTo(0, 500);
             });
         }
+        new Details();
     }
     async getGames(term = 'mmorpg') {
         const spinner = document.querySelector('.spinner');
@@ -34,10 +39,30 @@ export class Games {
             }
         );
         const data = await res.json();
+        // console.log(data[0]);
 
         this.ui.displayData(data);
+        this.addEvent();
         setTimeout(() => {
             spinner.style.display = 'none';
-        }, 1000);
+        }, 1500);
+    }
+
+    addEvent() {
+        const cards = document.querySelectorAll('.gameCard');
+
+        for (const card of cards) {
+            card.addEventListener('click', (e) => {
+                const Home = document.querySelector('.first-part');
+                const details = document.querySelector('.details');
+                this.details = new Details();
+                this.details.getDetails(card.dataset.id);
+                setTimeout(() => {
+                    Home.classList.add('d-none');
+                    details.classList.remove('d-none');
+                    scrollTo(0, 0);
+                }, 600);
+            });
+        }
     }
 }

@@ -32,7 +32,10 @@ body {
 
     backdrop-filter: blur(7px);
 }
-
+.details {
+    background: linear-gradient(181deg, #000 0.3%, #4a2800 200.1%);
+    backdrop-filter: blur(7px);
+}
 .landing h2 {
     color: #fff;
 
@@ -64,9 +67,14 @@ nav {
     font-size: 15px;
 }
 .active {
-    background-color: #fa8305 !important;
     transition: 0.6s;
     border-radius: 5px;
+}
+.closeBtn strong {
+    cursor: pointer;
+}
+.details .badge {
+    background-color: #4a2800;
 }
 /* spinner */
 .spinner {
