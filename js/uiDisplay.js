@@ -59,18 +59,25 @@ export class Ui {
         <p class="py-3"  >Discription: ${data.description} </p>
         </div>
 
-        <h3 class="col-12">Screen shots:</h3>
-       ${data.screenshots
-           .map((screen) => {
-               return `<div class="col-md-4"> <img class="img-fluid" src="${screen.image}"> </div>`;
-           })
-           .toString()
-           .replace(/,/g, '')}
+
+       ${
+           data.screenshots.length > 0
+               ? ' <h3 class="col-12">Screen shots:</h3>' +
+                 data.screenshots
+                     .map((screen) => {
+                         return `<div class="col-md-4"> <img class="img-fluid" src="${screen.image}"> </div>`;
+                     })
+                     .toString()
+                     .replace(/,/g, '')
+               : ''
+       }
            
            
-            <a class="btn btn-outline-warning w-auto ms-3" target="_blank" href='${
-                data.game_url
-            }'>Show the Game</a>
+           <div class="col-12 py-2">
+           <a class="btn btn-outline-warning w-auto ms-2" target="_blank" d-block href='${
+               data.game_url
+           }'>Show the Game</a>
+            </div>
             
            
         `;
